@@ -46,27 +46,29 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Phone</th>
+                                    <th>Email</th>
                                     <th>Role</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach($users as $k=>$user)
+                            @foreach($users as $user)
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->phoneNo }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->role }}</td>
+                                    <td>{{ $user->status }}</td>
                                     <td>
                                         <a class="mr-3" href="{{ url('/users/1') }}">
-                                            <img src="assets/img/icons/eye.svg" alt="img">
+                                            <img src="{{ url('/assets/images/icons/eye.svg') }}" alt="img">
                                         </a>
                                         <a class="mr-3" href="{{ url('/users/edit/1') }}">
-                                            <img src="assets/img/icons/edit.svg" alt="img">
+                                            <img src="{{ url('/assets/images/icons/edit.svg') }}" alt="img">
                                         </a>
                                         <a class="confirm-text" onclick="return false">
-                                            <img src="assets/img/icons/delete.svg" alt="img">
+                                            <img src="{{ url('/assets/images/icons/delete.svg') }}" alt="img">
                                         </a>
                                     </td>
                                 </tr>
@@ -101,9 +103,9 @@
         const usersTable = $("#usersTable").DataTable({
             dom: 'Bfrtip', responsive: true, lengthChange: true, autoWidth: false,
             buttons: [
-                {text: '<i class=\'fas fa-plus-circle\'></i> New Loan', className: 'btn btn-sm bg-gradient-navy text-white',
+                {text: '<i class=\'fas fa-plus-circle\'></i> New User', className: 'btn btn-sm bg-gradient-navy text-white',
                     action: function () {
-                        window.open('users/new')
+                        window.open('users/create')
                     }
                 },
                 "colvis"

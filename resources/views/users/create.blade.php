@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    <title>New User | Lend.Nexus</title>
+@endsection
+
 @section('style')
 @endsection
 
