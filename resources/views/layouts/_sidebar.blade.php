@@ -175,7 +175,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="employers" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Employers</p>
                             </a>
@@ -187,9 +187,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="organization" class="nav-link">
+                            <a href="{{ url('/roles') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Organization</p>
+                                <p>Roles</p>
                             </a>
                         </li>
                     </ul>

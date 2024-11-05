@@ -97,7 +97,7 @@
             buttons: [
                 {text: '<i class=\'fas fa-plus-circle\'></i> New Role', className: 'btn btn-sm bg-gradient-navy text-white',
                     action: function () {
-                        window.open('roles/create')
+                        window.open('roles/create', '_self')
                     }
                 },
                 "colvis"

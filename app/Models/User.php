@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Helpers\Badge;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -19,8 +20,12 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
+        'phoneNo',
+        'role_id',
         'password',
+        'status',
     ];
 
     /**
@@ -44,5 +49,26 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Get the role associated with the user.
+     */
+    public function role() {
+        return $this->belongsTo(Role::class);
+    }
+
+    /**
+     * Get the status badge HTML for this role.
+     *
+     * @return string
+     */
+    public function getStatusBadge(): string {
+        return match ($this->status) {
+            1 => Badge::set('primary', 'Active'),
+            2 => Badge::set('danger', 'Blocked'),
+            3 => Badge::set('secondary', 'Inactive'),
+            default => Badge::set('secondary', 'NONE'),
+        };
     }
 }

@@ -41,6 +41,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+                        @include('layouts._message')
                         <table id="usersTable" class="table table-bordered table-striped table-hover">
                             <thead class="bg-gradient-navy">
                                 <tr>
@@ -58,13 +59,13 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->phoneNo }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td>{{ $user->role }}</td>
-                                    <td>{{ $user->status }}</td>
+                                    <td>{{ $user->role->name }}</td>
+                                    <td>{!! $user->getStatusBadge() !!}</td>
                                     <td>
-                                        <a class="mr-3" href="{{ url('/users/1') }}">
+                                        <a class="mr-3" href="{{ url('/users/'.$user->id) }}">
                                             <img src="{{ url('/assets/images/icons/eye.svg') }}" alt="img">
                                         </a>
-                                        <a class="mr-3" href="{{ url('/users/edit/1') }}">
+                                        <a class="mr-3" href="{{ url('/users/edit/'.$user->id) }}">
                                             <img src="{{ url('/assets/images/icons/edit.svg') }}" alt="img">
                                         </a>
                                         <a class="confirm-text" onclick="return false">
@@ -105,7 +106,7 @@
             buttons: [
                 {text: '<i class=\'fas fa-plus-circle\'></i> New User', className: 'btn btn-sm bg-gradient-navy text-white',
                     action: function () {
-                        window.open('users/create')
+                        window.open('users/create', '_self')
                     }
                 },
                 "colvis"

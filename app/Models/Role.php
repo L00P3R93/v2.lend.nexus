@@ -16,6 +16,13 @@ class Role extends Model {
     ];
 
     /**
+     * Get the users associated with this role.
+     */
+    public function users() {
+        return $this->hasMany(User::class);
+    }
+
+    /**
      * Get the status badge HTML for this role.
      *
      * @return string
