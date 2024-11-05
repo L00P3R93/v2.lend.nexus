@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ url('/assets/images/favicon_io/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ url('/site.webmanifest') }}">
 
-    <title>Dashboard | Lend.Nexus</title>
+    @yield('title')
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -29,6 +29,9 @@
     <!-- summernote -->
     <link rel="stylesheet" href="{{ url('/assets/plugins/summernote/summernote-bs4.min.css') }}">
     <link rel="stylesheet" href="{{ url('/assets/custom/css/util.css') }} " />
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ url('/assets/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ url('/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
     <style>
         .user-panel img {
            vertical-align: unset !important;
@@ -64,6 +67,8 @@
 <script src="{{ url('/assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
 <!-- overlayScrollbars -->
 <script src="{{ url('/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+<!-- Select2 -->
+<script src="{{ url('/assets/plugins/select2/js/select2.full.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ url('/assets/dist/js/adminlte.js') }}"></script>
 @yield('script')

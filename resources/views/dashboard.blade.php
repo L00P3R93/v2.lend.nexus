@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('title')
+    <title>Dashboard | Lend.Nexus</title>
+@endsection
+
+
 @section('style')
 @endsection
 

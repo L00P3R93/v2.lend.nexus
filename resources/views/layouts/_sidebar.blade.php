@@ -181,7 +181,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="roles" class="nav-link ">
+                            <a href="{{ url('/users') }}" class="nav-link ">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Access</p>
                             </a>
