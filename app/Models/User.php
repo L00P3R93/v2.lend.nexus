@@ -58,6 +58,7 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+
     /**
      * Get the status badge HTML for this role.
      *

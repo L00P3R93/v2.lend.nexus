@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -29,6 +30,13 @@ Route::middleware(['auth', 'checkSession'])->group(function () {
     Route::get('/users/{id}', [UserController::class, 'show']);
     Route::get('/users/edit/{id}', [UserController::class, 'edit']);
     Route::put('/users/edit/{id}', [UserController::class, 'update']);
+
+    Route::get('/customers', [CustomerController::class, 'index']);
+    Route::get('/customers/create', [CustomerController::class, 'create']);
+    Route::post('/customers/create', [CustomerController::class, 'store']);
+    Route::get('/customers/{id}', [CustomerController::class, 'show']);
+    Route::get('/customers/edit/{id}', [CustomerController::class, 'edit']);
+    Route::put('/customers/edit/{id}', [CustomerController::class, 'update']);
 });
 
 
