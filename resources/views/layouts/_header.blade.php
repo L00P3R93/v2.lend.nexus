@@ -43,16 +43,16 @@
                         <img src="{{ url('/assets/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <span class="d-block">Vincent Kioko</span>
+                        <span class="d-block">{{ Auth::user()->name }}</span>
                     </div>
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <a href="{{ url('#') }}" class="dropdown-item">
+                <a href="{{ url('users/'.Auth::user()->id) }}" class="dropdown-item">
                     <i class="fas fa-user mr-2"></i> Profile
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="{{ url('#') }}" class="dropdown-item">
+                <a href="{{ url('logout') }}" class="dropdown-item">
                     <i class="fas fa-reply mr-2"></i> Log Out
                 </a>
             </div>

@@ -71,4 +71,8 @@ class User extends Authenticatable
             default => Badge::set('secondary', 'NONE'),
         };
     }
+
+    static public function getSingle($id){
+        return self::find($id);
+    }
 }
