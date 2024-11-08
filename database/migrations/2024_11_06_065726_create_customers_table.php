@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('primaryPhone', 30)->unique();
             $table->string('secondaryPhone', 100)->nullable();
             $table->string('work_email', 100)->unique();
-            $table->string('personal_email', 100)->unique();
+            $table->string('personal_email', 100)->unique()->nullable();
             $table->date('dob');
             $table->integer('gender')->default(1);
             $table->mediumText('business_address')->nullable();
@@ -33,7 +33,7 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id')->nullable();
             $table->unsignedBigInteger('bank_id')->nullable();
             $table->unsignedBigInteger('branch_id')->nullable();
-            $table->integer('status')->default(1);
+            $table->unsignedBigInteger('status')->nullable();
             $table->mediumText('comments')->nullable();
             $table->timestamps();
         });

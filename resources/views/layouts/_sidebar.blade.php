@@ -44,7 +44,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="customers" class="nav-link">
+                            <a href="{{ url('/customers') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Customers</p>
                             </a>

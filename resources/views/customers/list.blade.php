@@ -46,20 +46,27 @@
                             <thead class="bg-gradient-navy">
                             <tr>
                                 <th>Name</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                                <th>Status</th>
+                                <th>Bank</th>
+                                <th>Branch</th>
+                                <th>Town</th>
+                                <th>Loan Limit</th>
+                                <th>Has Loan</th>
+                                <th>Added By</th>
+                                <th>Date Added</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($customers as $customer)
                                 <tr>
-                                    <td>{{ $customer->first_name }}</td>
-                                    <td>{{ $customer->phoneNo }}</td>
-                                    <td>{{ $customer->work_email }}</td>
-                                    <td>{{ $customer->product->name }}</td>
-                                    <td>{{ $customer->status }}</td>
+                                    <td>{{ $customer->getCustomerName() }}</td>
+                                    <td>{{ $customer->bank->name }}</td>
+                                    <td>{{ $customer->branch->name }}</td>
+                                    <td>{{ $customer->town->name }}</td>
+                                    <td>{{ number_format($customer->loan_limit) }}</td>
+                                    <td>{{ $customer->has_loan }}</td>
+                                    <td></td>
+                                    <td>{{ $customer->created_at }}</td>
                                     <td>
                                         <a class="mr-3" href="{{ url('/customers/'.$customer->id) }}">
                                             <img src="{{ url('/assets/images/icons/eye.svg') }}" alt="img">

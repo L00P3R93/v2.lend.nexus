@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RoleController;
@@ -37,6 +38,9 @@ Route::middleware(['auth', 'checkSession'])->group(function () {
     Route::get('/customers/{id}', [CustomerController::class, 'show']);
     Route::get('/customers/edit/{id}', [CustomerController::class, 'edit']);
     Route::put('/customers/edit/{id}', [CustomerController::class, 'update']);
+
+    Route::get('/branches/{bankId}', [BranchController::class, 'getBranchByBank']);
+
 });
 
 

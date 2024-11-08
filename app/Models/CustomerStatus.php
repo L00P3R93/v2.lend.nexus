@@ -6,21 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class County extends Model
-{
+class CustomerStatus extends Model{
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
-    protected $table = 'county';
+    protected $table = 'customer_status';
 
     protected $fillable = [
-        'name',
+        'name'
     ];
 
     /**
-     * Get the towns associated with this county.
+     * Get the customers associated with this status.
      */
-    public function towns() {
-        return $this->hasMany(Town::class);
+    public function statuses() {
+        return $this->hasMany(Customer::class);
     }
 }

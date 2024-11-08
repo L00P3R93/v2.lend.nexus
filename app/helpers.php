@@ -326,3 +326,14 @@ function isValidDob($dob): bool
     return false;
 }
 
+function getSection($sectionId): string {
+    switch ($sectionId){
+        default:
+        case 1:
+            return 'HQ';
+            break;
+        case 2:
+            return 'MSA';
+            break;
+    }
+}
