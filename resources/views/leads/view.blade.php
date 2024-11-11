@@ -150,7 +150,7 @@
                                                         </a>
                                                     </div>
                                                     <div class="btn-group">
-                                                        <a target="_blank" href="#" class="btn btn-success bg-gradient-success">
+                                                        <a target="_blank" href="{{ url('/customers/edit/'.$lead->id) }}" class="btn btn-success bg-gradient-success">
                                                             <i class="fas fa-check-circle"></i>&nbsp;Add as Customer
                                                         </a>
                                                     </div>
