@@ -281,6 +281,17 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="m-tb-20">
+                                @if($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                            </div>
                             <button type="submit" class="btn btn-primary bg-gradient-primary m-tb-25">Save</button>
                         </form>
                     </div>

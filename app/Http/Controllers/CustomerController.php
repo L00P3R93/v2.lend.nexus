@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Town;
 use App\Models\Branch;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller{
     public function index(){
@@ -67,6 +68,7 @@ class CustomerController extends Controller{
             "comments" => $request->comments,
             "loan_limit" => $request->loan_limit,
             "status" => $request->status,
+            "user_id" => Auth::user()->id,
         ]);
 
         return redirect('customers')->with('success', 'Customer created successfully!');
@@ -92,9 +94,9 @@ class CustomerController extends Controller{
             "first_name" => "required",
             "last_name" => "required",
             "other_name" => "required",
-            "idNo" => "required|unique:customers,idNo",
-            "primaryPhone" => "required|unique:customers,primaryPhone",
-            "work_email" => "required|unique:customers,work_email",
+            "idNo" => "required",
+            "primaryPhone" => "required",
+            "work_email" => "required",
             "gender" => "required|integer",
             "dob" => "required|date",
             "product_id" => "required|integer",
@@ -104,7 +106,7 @@ class CustomerController extends Controller{
             "business_address" => "required|string",
             "town_id" => "required|integer",
             "section" => "required|integer",
-            "home_address" => "required|string",
+            "home_address" => "required",
             "loan_limit" => "required",
             "status" => "required|integer",
         ]);

@@ -138,7 +138,7 @@
                                                         <th>STATUS:</th>
                                                         <td>{{ $customer->status }}</td>
                                                         <th>ADDED BY:</th>
-                                                        <td></td>
+                                                        <td>{{ $customer->user->name }}</td>
                                                         <th>ADDED DATE:</th>
                                                         <td>{{ $customer->created_at }}</td>
                                                     </tr>

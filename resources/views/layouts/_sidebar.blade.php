@@ -38,7 +38,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="leads" class="nav-link">
+                            <a href="{{ url('/leads') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Leads</p>
                             </a>
@@ -50,13 +50,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="clearedMonthly" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Zero Balance</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="employers" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Imara Banks</p>
                             </a>
@@ -73,13 +73,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="top_ups" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Top Ups</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="loans" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Loans</p>
                             </a>
@@ -94,25 +94,25 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="collection_list" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Collection List</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="overdues" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Over-Dues</p>
+                                <p>OverDues</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="defaulters" class="nav-link ">
+                            <a href="#" class="nav-link ">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Past Over-Dues</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="dueRoll" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Due Roll</p>
                             </a>
@@ -127,13 +127,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="suspense" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Suspense</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="payments" class="nav-link ">
+                            <a href="#" class="nav-link ">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Payments</p>
                             </a>
@@ -148,19 +148,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="disbursedReport" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Disbursed Report</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="loanBookReport" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Loan Book Report</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="collectionsReport" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Collections Report</p>
                             </a>

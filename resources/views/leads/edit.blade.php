@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    <title>Edit Customer | Lend.Nexus</title>
+    <title>New Lead | Lend.Nexus</title>
 @endsection
 
 @section('style')
@@ -15,7 +15,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Customer Management</h1>
+                        <h1 class="m-0">Leads Management</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -33,10 +33,10 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-header">
-                        Edit Customer
+                        Create Lead
                     </div>
                     <div class="card-body">
-                        <form method="post" action="" class="needs-validation" novalidate>
+                        <form method="post" action="">
                             @csrf
                             @method('PUT')
                             <h3>Personal Details</h3>
@@ -48,10 +48,7 @@
                                             <span class="input-group-text"><i class="fas fa-user-edit"></i></span>
                                         </div>
 
-                                        <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" value="{{ old('first_name', $customer->first_name) }}" required autocomplete="off" />
-                                        @error('first_name')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" value="{{ old('first_name', $lead->first_name) }}" required autocomplete="off" />
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -60,10 +57,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-user-edit"></i></span>
                                         </div>
-                                        <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" value="{{ old('last_name', $customer->last_name) }}" required autocomplete="off"/>
-                                        @error('last_name')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" value="{{ old('last_name', $lead->last_name) }}" required autocomplete="off"/>
                                     </div>
 
                                 </div>
@@ -73,10 +67,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-user-edit"></i></span>
                                         </div>
-                                        <input type="text" class="form-control" name="other_name" id="other_name" placeholder="Other Name" value="{{ old('other_name', $customer->other_name) }}"  autocomplete="off" />
-                                        @error('other_name')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <input type="text" class="form-control" name="other_name" id="other_name" placeholder="Other Name"  value="{{ old('other_name', $lead->other_name) }}" autocomplete="off" />
                                     </div>
                                 </div>
                             </div>
@@ -87,10 +78,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-id-card"></i></span>
                                         </div>
-                                        <input type="text" class="form-control" name="idNo" id="idNo" placeholder="National ID/Passport" value="{{ old('idNo', $customer->idNo) }}"  />
-                                        @error('idNo')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <input type="text" class="form-control" name="idNo" id="idNo" placeholder="National ID/Passport"  value="{{ old('idNo', $lead->idNo) }}" autocomplete="off" />
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -99,10 +87,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
                                         </div>
-                                        <input type="text" class="form-control" name="primaryPhone" id="primaryPhone" placeholder="Phone Number" value="{{ old('primaryPhone', $customer->primaryPhone) }}" />
-                                        @error('primaryPhone')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <input type="number" class="form-control" name="primaryPhone" id="primaryPhone" placeholder="Phone Number"  value="{{ old('primaryPhone', $lead->primaryPhone) }}" required />
                                     </div>
 
                                 </div>
@@ -112,7 +97,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
                                         </div>
-                                        <input type="text" class="form-control" name="secondaryPhone" id="secondaryPhone" placeholder="Phone Number" value="{{ old('secondaryPhone', $customer->secondaryPhone) }}" />
+                                        <input type="number" class="form-control" name="secondaryPhone" id="secondaryPhone" placeholder="Phone Number"  value="{{ old('secondaryPhone', $lead->secondaryPhone) }}" />
                                     </div>
                                 </div>
                             </div>
@@ -123,10 +108,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                         </div>
-                                        <input type="email" class="form-control" name="work_email" id="work_email" placeholder="Email Address" value="{{ old('work_email', $customer->work_email) }}"  />
-                                        @error('work_email')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <input type="email" class="form-control" name="work_email" id="work_email" placeholder="Email Address"  value="{{ old('work_email', $lead->work_email) }}" autocomplete="off"  />
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
@@ -137,24 +119,18 @@
                                         </div>
                                         <select class="form-control" name="gender" id="gender">
                                             <option> -- Select Gender -- </option>
-                                            <option {{ selected(1, $customer->gender, 'selected') }} value="1">Male</option>
-                                            <option {{ selected(2, $customer->gender, 'selected') }} value="2">Female</option>
+                                            <option {{ selected(1, $lead->gender, 'selected') }} value="1">Male</option>
+                                            <option {{ selected(2, $lead->gender, 'selected') }} value="2">Female</option>
                                         </select>
-                                        @error('gender')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="dob">Date Of Birth</label>
                                     <div class="input-group date" id="dobdate" data-target-input="nearest">
-                                        <input type="text" class="form-control datetimepicker-input" id="dob" name="dob" data-target="#dobdate" value="{{ old('dob', $customer->dob) }}"/>
+                                        <input type="text" class="form-control datetimepicker-input" id="dob" name="dob" data-target="#dobdate" value="{{ old('dob', $lead->dob) }}"/>
                                         <div class="input-group-append" data-target="#dobdate" data-toggle="datetimepicker">
                                             <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
                                         </div>
-                                        @error('dob')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -170,16 +146,13 @@
                                         <select class="form-control" name="product_id" id="product_id">
                                             <option> -- Select Product -- </option>
                                             @foreach($products as $product)
-                                                <option {{ selected($product->id, $customer->product_id, 'selected') }} value="{{ $product->id }}">{{ $product->name }}</option>
+                                                <option {{ selected($product->id, $lead->product_id, 'selected') }} value="{{ $product->id }}">{{ $product->name }}</option>
                                             @endforeach
                                         </select>
-                                        @error('product_id')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="bankId">Bank</label>
+                                    <label for="bank_id">Bank</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-university"></i></span>
@@ -187,16 +160,13 @@
                                         <select class="form-control" id="bank_id" name="bank_id">
                                             <option> -- Select Bank --</option>
                                             @foreach($banks as $bank)
-                                                <option {{ selected($bank->id, $customer->bank_id, 'selected') }} value="{{ $bank->id }}">{{ $bank->name }}</option>
+                                                <option {{ selected($bank->id, $lead->bank_id, 'selected') }} value="{{ $bank->id }}">{{ $bank->name }}</option>
                                             @endforeach
                                         </select>
-                                        @error('bank_id')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="branchId">Branch</label>
+                                    <label for="branch_id">Branch</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-university"></i></span>
@@ -204,34 +174,12 @@
                                         <select class="form-control" name="branch_id" id="branch_id">
                                             <option> -- Select Branch -- </option>
                                             @foreach($branches as $branch)
-                                                <option {{ selected($branch->id, $customer->branch_id, 'selected') }} value="{{ $branch->id }}">{{ $branch->name }}</option>
+                                                <option {{ selected($branch->id, $lead->branch_id, 'selected') }} value="{{ $branch->id }}">{{ $branch->name }}</option>
                                             @endforeach
                                         </select>
-                                        @error('branch_id')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
                                     </div>
                                 </div>
                             </div>
-                            <div class="row m-t-10">
-                                <div class="form-group col-md-4">
-                                    <label for="job_type">Job Type</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-list-alt"></i></span>
-                                        </div>
-                                        <select class="form-control" name="job_type" id="job_type">
-                                            <option> -- Select Job Type -- </option>
-                                            <option {{ selected(1, $customer->job_type, 'selected') }} value="1">Permanent</option>
-                                            <option {{ selected(2, $customer->job_type, 'selected') }} value="2">Contract</option>
-                                        </select>
-                                        @error('job_type')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-
                             <hr/>
                             <h3>Physical Addresses</h3>
                             <div class="row m-t-10">
@@ -241,14 +189,11 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-address-card"></i></span>
                                         </div>
-                                        <textarea class="form-control" id="business_address" name="business_address" rows="3" cols="20">{{ $customer->business_address }}</textarea>
-                                        @error('business_address')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <textarea class="form-control" id="business_address" name="business_address" rows="3" cols="20">{{ old('business_address', $lead->business_address) }}</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="town">Town</label>
+                                    <label for="town_id">Town</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-location-arrow"></i></span>
@@ -256,12 +201,9 @@
                                         <select class="form-control" name="town_id" id="town_id">
                                             <option> -- Select Town -- </option>
                                             @foreach($towns as $town)
-                                                <option {{ selected($town->id, $customer->town_id, 'selected') }} value="{{ $town->id }}">{{ $town->name }}</option>
+                                                <option {{ selected($town->id, $lead->town_id, 'selected') }} value="{{ $town->id }}">{{ $town->name }}</option>
                                             @endforeach
                                         </select>
-                                        @error('town_id')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
@@ -272,12 +214,9 @@
                                         </div>
                                         <select class="form-control" name="section" id="section">
                                             <option> -- Select Office Branch -- </option>
-                                            <option {{ selected(1, $customer->section, 'selected') }} value="1">Nairobi - HQ</option>
-                                            <option {{ selected(2, $customer->section, 'selected') }} value="2">Mombasa</option>
+                                            <option {{ selected(1, $lead->section, 'selected') }} value="1">Nairobi - HQ</option>
+                                            <option {{ selected(1, $lead->section, 'selected') }} value="2">Mombasa</option>
                                         </select>
-                                        @error('section')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -288,10 +227,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-address-card"></i></span>
                                         </div>
-                                        <textarea class="form-control" id="home_address" name="home_address" rows="3" cols="20">{{ old('home_address', $customer->home_address) }}</textarea>
-                                        @error('home_address')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <textarea class="form-control" id="home_address" name="home_address" rows="3" cols="20">{{ old('home_address', $lead->home_address) }}</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
@@ -300,44 +236,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-comment-dots"></i></span>
                                         </div>
-                                        <textarea class="form-control" id="comments" name="comments" rows="3" cols="20">{{ $customer->comments }}</textarea>
-                                        @error('comments')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            <hr />
-                            <h3>Credit Details</h3>
-                            <div class="row m-t-10">
-                                <div class="col-md-4">
-                                    <label for="loan_limit">Loan Limit</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
-                                        </div>
-                                        <input type="number" class="form-control" name="loan_limit" id="loan_limit" placeholder="Loan Limit" value="{{ $customer->loan_limit }}" />
-                                        @error('loan_limit')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="status">Customer Status</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-id-card"></i></span>
-                                        </div>
-                                        <select class="form-control" id="status" name="status">
-                                            <option> -- Select Customer Status</option>
-                                            @foreach($states as $status)
-                                                <option {{ selected($status->id, $customer->status, 'selected') }} value="{{ $status->id }}">{{ $status->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('status')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <textarea class="form-control" id="comments" name="comments" rows="3" cols="20">{{ old('comments', $lead->comments) }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -391,23 +290,5 @@
                 }
             });
         });
-
-        (function() {
-            'use strict';
-            window.addEventListener('load', function() {
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.getElementsByClassName('needs-validation');
-                // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function(form) {
-                    form.addEventListener('submit', function(event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
     </script>
 @endsection

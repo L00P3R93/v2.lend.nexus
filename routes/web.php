@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LeadController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,13 @@ Route::middleware(['auth', 'checkSession'])->group(function () {
     Route::get('/customers/{id}', [CustomerController::class, 'show']);
     Route::get('/customers/edit/{id}', [CustomerController::class, 'edit']);
     Route::put('/customers/edit/{id}', [CustomerController::class, 'update']);
+
+    Route::get('/leads', [LeadController::class, 'index']);
+    Route::get('/leads/create', [LeadController::class, 'create']);
+    Route::post('/leads/create', [LeadController::class, 'store']);
+    Route::get('/leads/{id}', [LeadController::class, 'show']);
+    Route::get('/leads/edit/{id}', [LeadController::class, 'edit']);
+    Route::put('/leads/edit/{id}', [LeadController::class, 'update']);
 
     Route::get('/branches/{bankId}', [BranchController::class, 'getBranchByBank']);
 

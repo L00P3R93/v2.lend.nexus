@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    <title>Customers | Lend.Nexus</title>
+    <title>Leads | Lend.Nexus</title>
 @endsection
 
 @section('style')
@@ -19,7 +19,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Customer Management</h1>
+                        <h1 class="m-0">Leads Management</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -37,41 +37,37 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Customers</h3>
+                        <h3 class="card-title">Leads</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         @include('layouts._message')
-                        <table id="customersTable" class="table table-bordered table-striped table-hover">
+                        <table id="leadsTable" class="table table-bordered table-striped table-hover">
                             <thead class="bg-gradient-navy">
                             <tr>
                                 <th>Name</th>
                                 <th>Bank</th>
                                 <th>Branch</th>
                                 <th>Town</th>
-                                <th>Loan Limit</th>
-                                <th>Has Loan</th>
                                 <th>Added By</th>
                                 <th>Date Added</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($customers as $customer)
+                            @foreach($leads as $lead)
                                 <tr>
-                                    <td>{{ $customer->getCustomerName() }}</td>
-                                    <td>{{ $customer->bank->name }}</td>
-                                    <td>{{ $customer->branch->name }}</td>
-                                    <td>{{ $customer->town->name }}</td>
-                                    <td>{{ number_format($customer->loan_limit) }}</td>
-                                    <td>{!! $customer->getHasLoanBadge() !!}</td>
-                                    <td>{{ $customer->user->name }}</td>
-                                    <td>{{ $customer->created_at }}</td>
+                                    <td>{{ $lead->getCustomerName() }}</td>
+                                    <td>{{ $lead->bank->name }}</td>
+                                    <td>{{ $lead->branch->name }}</td>
+                                    <td>{{ $lead->town->name }}</td>
+                                    <td>{{ $lead->user->name }}</td>
+                                    <td>{{ $lead->created_at }}</td>
                                     <td>
-                                        <a class="mr-3" href="{{ url('/customers/'.$customer->id) }}">
+                                        <a class="mr-3" href="{{ url('/leads/'.$lead->id) }}">
                                             <img src="{{ url('/assets/images/icons/eye.svg') }}" alt="img">
                                         </a>
-                                        <a class="mr-3" href="{{ url('/customers/edit/'.$customer->id) }}">
+                                        <a class="mr-3" href="{{ url('/leads/edit/'.$lead->id) }}">
                                             <img src="{{ url('/assets/images/icons/edit.svg') }}" alt="img">
                                         </a>
                                         <a class="confirm-text" onclick="return false">
@@ -107,12 +103,12 @@
     <script src="{{ url('/assets/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ url('/assets/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
     <script>
-        const customersTable = $("#customersTable").DataTable({
+        const leadsTable = $("#leadsTable").DataTable({
             dom: 'Bfrtip', responsive: true, lengthChange: true, autoWidth: false,
             buttons: [
-                {text: '<i class=\'fas fa-plus-circle\'></i> New Customer', className: 'btn btn-sm bg-gradient-navy text-white',
+                {text: '<i class=\'fas fa-plus-circle\'></i> New Lead', className: 'btn btn-sm bg-gradient-navy text-white',
                     action: function () {
-                        window.open('customers/create', '_self')
+                        window.open('leads/create', '_self')
                     }
                 },
                 "colvis"

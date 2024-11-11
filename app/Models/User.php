@@ -58,6 +58,12 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    /**
+     * Get the customers associated with this user.
+     */
+    public function customers() {
+        return $this->hasMany(Customer::class);
+    }
 
     /**
      * Get the status badge HTML for this role.

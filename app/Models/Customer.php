@@ -22,17 +22,26 @@ class Customer extends Model {
         'dob',
         'gender',
         'business_address',
-        'work_address',
+        'home_address',
         'section',
         'job_type',
         'loan_limit',
+        'has_loan',
         'town_id',
         'product_id',
         'bank_id',
         'branch_id',
         'status',
-        'comments'
+        'comments',
+        'user_id'
     ];
+
+    /**
+     * Get the user associated with the customer.
+     */
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 
     /**
      * Get the product associated with the customer.
@@ -74,7 +83,7 @@ class Customer extends Model {
      * @return string
      */
     public function getCustomerName(): string {
-        return "$this->first_name $this->last_name";
+        return isset($this->other_name)? "$this->first_name $this->other_name $this->last_name" :"$this->first_name $this->last_name";
     }
 
     /**
@@ -90,6 +99,14 @@ class Customer extends Model {
             4 => Badge::set('default', 'Deleted'),
             5 => Badge::set('warning', 'Fraud'),
             6 => Badge::set('info', 'Lead'),
+            default => Badge::set('secondary', 'NONE'),
+        };
+    }
+
+    public function getHasLoanBadge(): string {
+        return match ($this->has_loan) {
+            0 => Badge::set('default', 'NO'),
+            1 => Badge::set('primary', 'YES'),
             default => Badge::set('secondary', 'NONE'),
         };
     }
