@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreign('product_id')->references('id')->on('products')->onDelete('set null');
             $table->foreign('bank_id')->references('id')->on('banks')->onDelete('set null');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
-            $table->foreign('status')->references('id')->on('loan_states')->onDelete('set null');
+            $table->foreign('status_id')->references('id')->on('loan_states')->onDelete('set null');
         });
         Schema::table('refinances', function (Blueprint $table) {
             $table->foreign('loan_id')->references('id')->on('loans')->onDelete('set null');

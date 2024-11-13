@@ -163,7 +163,7 @@
                                                         </a>
                                                     </div>
                                                     <div class="btn-group">
-                                                        <a target="_blank" href="#" class="btn btn-success bg-gradient-success">
+                                                        <a target="_blank" href="{{ url('/loans/create/'.$customer->id) }}" class="btn btn-success bg-gradient-success">
                                                             <i class="fas fa-check-circle"></i>&nbsp;Give Loan
                                                         </a>
                                                     </div>

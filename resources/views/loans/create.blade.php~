@@ -85,9 +85,9 @@
                                         </div>
                                         <select class="form-control" id="loan_period" name="loan_period">
                                             <option> -- Select Loan Period -- </option>
-                                            @for($i=1; $i<=12; $i++)
-                                                <option {{ selected(old('loan_period', 0), $i, 'selected') }} value="{{ $i }}">{{ "$i Months" }}</option>
-                                            @endfor
+                                            <?php for($i=1; $i<=12; $i++){ ?>
+                                            <option value="<?= $i ?>"><?= "$i Months" ?></option>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -101,15 +101,15 @@
                                         </div>
                                         <select class="form-control" id="pay_method" name="pay_method">
                                             <option> -- Select Method -- </option>
-                                            <option {{ selected(1, old('pay_method', 0), 'selected') }} value="1"> Mobile Money </option>
-                                            <option {{ selected(2, old('pay_method', 0), 'selected') }} value="2"> Bank Transfer </option>
+                                            <option value="1"> Mobile Money </option>
+                                            <option value="2"> Bank Transfer </option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="when_due">When is the Due Date? </label>
                                     <div class="input-group date" id="due_date_dt" data-target-input="nearest">
-                                        <input type="text" class="form-control datetimepicker-input" id="due_date" name="due_date" data-target="#due_date_dt" value="{{ old('due_date', date('Y-m-d', strtotime("today +1 month"))) }}"/>
+                                        <input type="text" class="form-control datetimepicker-input" id="due_date" name="due_date" data-target="#due_date_dt" value="{{ date('Y-m-d', strtotime("today +1 month")) }}"/>
                                         <div class="input-group-append" data-target="#due_date_dt" data-toggle="datetimepicker">
                                             <div class="input-group-text"><i class="fa fa-calendar-day"></i></div>
                                         </div>

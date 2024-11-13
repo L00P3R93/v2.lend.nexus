@@ -10,6 +10,8 @@ class LoanStatus extends Model {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
+    protected $table = 'loan_states';
+
     /**
      * The attributes that are mass assignable.
      *

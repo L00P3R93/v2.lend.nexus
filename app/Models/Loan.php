@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Badge;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -35,7 +36,7 @@ class Loan extends Model {
         'loan_period',
         'user_id',
         'comments',
-        'status',
+        'status_id',
         'section',
         'roll_state',
         'roll_state_ok',
@@ -84,5 +85,17 @@ class Loan extends Model {
      */
     public function refinances() {
         return $this->hasMany(Refinance::class);
+    }
+
+    public function getStatusBadge(): string {
+        return match ($this->status_id) {
+            1 => Badge::set('primary', $this->status->name),
+            2 => Badge::set('danger', $this->status->name),
+            3 => Badge::set('secondary', $this->status->name),
+            4 => Badge::set('default', $this->status->name),
+            5 => Badge::set('warning', $this->status->name),
+            6 => Badge::set('info', $this->status->name),
+            default => Badge::set('secondary', 'NONE'),
+        };
     }
 }

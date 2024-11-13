@@ -25,7 +25,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                    <a href="{{ url('/dashboard') }}" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
@@ -73,13 +73,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ url('/refinances') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Top Ups</p>
+                                <p>Refinances</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ url('/loans') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Loans</p>
                             </a>

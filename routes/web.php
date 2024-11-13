@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\LoanController;
+use App\Http\Controllers\RefinanceController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +55,8 @@ Route::middleware(['auth', 'checkSession'])->group(function () {
     Route::get('/loans/{id}', [LoanController::class, 'show']);
     Route::get('/loans/edit/{id}', [LoanController::class, 'edit']);
     Route::put('/loans/edit/{id}', [LoanController::class, 'update']);
+
+    Route::get('/refinances', [RefinanceController::class, 'index']);
 
     Route::get('/branches/{bankId}', [BranchController::class, 'getBranchByBank']);
 
