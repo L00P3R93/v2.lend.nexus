@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="LaravelQuerySettings">
+    <option name="filterDataSources" value="true" />
+    <option name="filteredDataSources">
+      <set>
+        <option value="1f349bd2-d41d-458e-b02a-805baf7e119c&lt;-/lq/-&gt;nexus_lend_v2" />
+      </set>
+    </option>
+    <option name="tablePrefix" value="nexus" />
+  </component>
+</project>

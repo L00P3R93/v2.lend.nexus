@@ -65,6 +65,22 @@ class User extends Authenticatable
         return $this->hasMany(Customer::class);
     }
 
+
+    /**
+     * Get the loans associated with this user.
+     */
+    public function loans() {
+        return $this->hasMany(Loan::class);
+    }
+
+
+    /**
+     * Get the refinances associated with this user.
+     */
+    public function refinances() {
+        return $this->hasMany(Refinance::class);
+    }
+
     /**
      * Get the status badge HTML for this role.
      *

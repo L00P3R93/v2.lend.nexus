@@ -5,6 +5,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LeadController;
+use App\Http\Controllers\LoanController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,13 @@ Route::middleware(['auth', 'checkSession'])->group(function () {
     Route::get('/leads/{id}', [LeadController::class, 'show']);
     Route::get('/leads/edit/{id}', [LeadController::class, 'edit']);
     Route::put('/leads/edit/{id}', [LeadController::class, 'update']);
+
+    Route::get('/loans', [LoanController::class, 'index']);
+    Route::get('/loans/create/{id}', [LoanController::class, 'create']);
+    Route::post('/loans/create/{id}', [LoanController::class, 'store']);
+    Route::get('/loans/{id}', [LoanController::class, 'show']);
+    Route::get('/loans/edit/{id}', [LoanController::class, 'edit']);
+    Route::put('/loans/edit/{id}', [LoanController::class, 'update']);
 
     Route::get('/branches/{bankId}', [BranchController::class, 'getBranchByBank']);
 

@@ -17,23 +17,16 @@ class Bank extends Model
     ];
 
     /**
-     * Get the customers associated with this bank.
+     * Get the customers associated with this product.
      */
     public function customers() {
         return $this->hasMany(Customer::class);
     }
 
     /**
-     * Get the branches associated with this bank.
+     * Get the customers associated with this product.
      */
     public function branches() {
         return $this->hasMany(Branch::class);
-    }
-
-    /**
-     * Get the loans associated with this bank.
-     */
-    public function loans() {
-        return $this->hasMany(Loan::class);
     }
 }

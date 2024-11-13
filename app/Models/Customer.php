@@ -72,6 +72,20 @@ class Customer extends Model {
     }
 
     /**
+     * Get the loans associated with the customer.
+     */
+    public function loans() {
+        return $this->hasMany(Loan::class);
+    }
+
+    /**
+     * Get the refinances associated with the customer.
+     */
+    public function refinances() {
+        return $this->hasMany(Refinance::class);
+    }
+
+    /**
      * Get the status associated with the customer.
      */
     public function status() {

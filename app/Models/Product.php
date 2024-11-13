@@ -21,4 +21,11 @@ class Product extends Model{
     public function customers() {
         return $this->hasMany(Customer::class);
     }
+
+    /**
+     * Get the loans associated with this product.
+     */
+    public function loans() {
+        return $this->hasMany(Loan::class);
+    }
 }
