@@ -120,25 +120,10 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ url('/payments') }}" class="nav-link">
                         <i class="nav-icon fas fa-receipt"></i>
                         <p>Payments</p>
-                        <i class="fas fa-angle-left right"></i>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Suspense</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link ">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Payments</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">

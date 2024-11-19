@@ -32,6 +32,7 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
+                @include('layouts._message')
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-lg-3 col-6">

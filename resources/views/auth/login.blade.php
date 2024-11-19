@@ -16,6 +16,8 @@
     <link href="{{ url('/assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" />
     <link href="{{ url('/assets/plugins/animate/animate.css') }}" rel="stylesheet" />
     <link href="{{ url('/assets/plugins/css-hamburgers/hamburgers.min.css') }}" rel="stylesheet" />
+    <!-- iCheck -->
+    <link rel="stylesheet" href="{{ url('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <link href="{{ url('/assets/custom/css/util.css') }}" rel="stylesheet" />
     <link href="{{ url('/assets/custom/css/login.css') }}" rel="stylesheet" />
 </head>
@@ -45,11 +47,11 @@
                     <label for="password">Password</label>
                 </div>
 
-                <div class="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" id="remember_me" name="remember_me"> Remember me
-                    </label>
+                <div class="checkbox icheck-primary mb-3">
+                    <input type="checkbox" id="remember_me" name="remember_me" checked>
+                    <label for="remember_me">Remember me</label>
                 </div>
+
                 <button type="submit" class="btn btn-lg btn-primary btn-block">Sign in</button>
                 <p class="mt-5 mb-3 text-muted text-center"><strong>Copyright &copy; 2021 <a href="#">HMS</a>.</strong> &nbsp;&nbsp;All rights reserved.</p>
             </form>

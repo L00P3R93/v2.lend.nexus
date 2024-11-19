@@ -87,13 +87,6 @@ class Loan extends Model {
         return $this->hasMany(Refinance::class);
     }
 
-    /**
-     * Get the payments associated with this loan.
-     */
-    public function payments() {
-        return $this->hasMany(Payment::class);
-    }
-
     public function getStatusBadge(): string {
         return match ($this->status_id) {
             1 => Badge::set('primary', $this->status->name),

@@ -6,6 +6,8 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\LoanController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RefinanceController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -19,14 +21,17 @@ Route::post('/login', [AuthController::class, 'authenticate']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::middleware(['auth', 'checkSession'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/roles', [RoleController::class, 'index']);
-    Route::get('/roles/create', [RoleController::class, 'create']);
-    Route::post('/roles/create', [RoleController::class, 'store']);
-    Route::get('/roles/{id}', [RoleController::class, 'show']);
-    Route::get('/roles/edit/{id}', [RoleController::class, 'edit']);
-    Route::put('/roles/edit/{id}', [RoleController::class, 'update']);
+    Route::middleware(['role:1,2'])->group(function () {
+        Route::get('/roles', [RoleController::class, 'index']);
+        Route::get('/roles/create', [RoleController::class, 'create']);
+        Route::post('/roles/create', [RoleController::class, 'store']);
+        Route::get('/roles/{id}', [RoleController::class, 'show']);
+        Route::get('/roles/edit/{id}', [RoleController::class, 'edit']);
+        Route::put('/roles/edit/{id}', [RoleController::class, 'update']);
+    });
+
 
     Route::get('/users', [UserController::class, 'index']);
     Route::get('/users/create', [UserController::class, 'create']);
@@ -56,9 +61,26 @@ Route::middleware(['auth', 'checkSession'])->group(function () {
     Route::get('/loans/edit/{id}', [LoanController::class, 'edit']);
     Route::put('/loans/edit/{id}', [LoanController::class, 'update']);
 
+    Route::get('/payments', [PaymentController::class, 'index']);
+    Route::get('/payments/create', [PaymentController::class, 'create']);
+    Route::post('/payments/create', [PaymentController::class, 'store']);
+    Route::get('/payments/create/{id}', [PaymentController::class, 'createFromLoan']);
+    Route::post('/payments/create/{id}', [PaymentController::class, 'storeFromLoan']);
+    Route::get('/payments/{id}', [PaymentController::class, 'show']);
+    Route::get('/payments/edit/{id}', [PaymentController::class, 'edit']);
+    Route::put('/payments/edit/{id}', [PaymentController::class, 'update']);
+
+
     Route::get('/refinances', [RefinanceController::class, 'index']);
 
     Route::get('/branches/{bankId}', [BranchController::class, 'getBranchByBank']);
+
+    Route::get('/products', [ProductController::class, 'index']);
+    Route::get('/products/create', [ProductController::class, 'create']);
+    Route::post('/products/create', [ProductController::class, 'store']);
+    Route::get('/products/{id}', [ProductController::class, 'show']);
+    Route::get('/products/edit/{id}', [ProductController::class, 'edit']);
+    Route::put('/products/edit/{id}', [ProductController::class, 'update']);
 
 });
 

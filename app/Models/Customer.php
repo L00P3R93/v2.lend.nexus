@@ -93,6 +93,13 @@ class Customer extends Model {
     }
 
     /**
+     * Get the payments associated with this customer.
+     */
+    public function payments() {
+        return $this->hasMany(Payment::class);
+    }
+
+    /**
      * Gets the name of the associated customer
      * @return string
      */

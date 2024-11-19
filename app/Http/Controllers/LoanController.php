@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Badge;
+use App\Models\Bank;
 use App\Models\Customer;
 use App\Models\Loan;
 use Illuminate\Http\Request;
@@ -56,10 +57,37 @@ class LoanController extends Controller {
     }
     public function edit($id) {
         $loan = Loan::findOrFail($id);
-        return view('loans.edit', compact('loan'));
+        $banks = Bank::all();
+        return view('loans.edit', compact('loan', 'banks'));
     }
     public function update(Request $request, $id) {
-        dd($request->all());
+        $request->validate([
+            "loan_amount" => "required|numeric",
+            "loan_interest" => "required|numeric",
+            "given_date" => "required|date",
+            "due_date" => "required|date",
+            "bank_id" => "required|integer",
+            "late_penalty" => "required|numeric",
+            "bounce_cheque" => "required|numeric",
+            "recovery_fee" => "required|numeric",
+            "penalty_total" => "required|numeric",
+            "loan_total" => "required|numeric",
+        ]);
+        $loan = Loan::findOrFail($id);
+
+        $loan->update([
+            "loan_amount" => $request->loan_amount,
+            "loan_interest" => $request->loan_interest,
+            "given_date" => $request->given_date,
+            "due_date" => $request->due_date,
+            "bank_id" => $request->bank_id,
+            "late_penalty" => $request->late_penalty,
+            "bounce_cheque" => $request->bounce_cheque,
+            "recovery_fee" => $request->recovery_fee,
+            "penalty_total" => $request->penalty_total,
+            "loan_total" => $request->loan_total,
+        ]);
+        return redirect('loans')->with('success', 'Loan updated successfully!');
     }
 
     /**

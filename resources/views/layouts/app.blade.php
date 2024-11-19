@@ -76,6 +76,8 @@
 <script src="{{ url('/assets/plugins/select2/js/select2.full.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ url('/assets/dist/js/adminlte.js') }}"></script>
+<!-- Helper Script -->
+<script src="{{ url('/assets/custom/js/helpers.js') }}"></script>
 @yield('script')
 </body>
 </html>
