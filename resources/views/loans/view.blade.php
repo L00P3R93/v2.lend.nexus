@@ -106,17 +106,17 @@
                                     <th>Amount Paid:</th>
                                     <td>
                                         <strong>
-                                            {{ number_format(0) }}
+                                            {{ number_format($loan->payments->sum('amount')) }}
                                         </strong>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Balance:</th>
-                                    <td class="text-red text-bold">{{ number_format(0) }} </strong> </td>
+                                    <td class="text-red text-bold"><strong>{{ number_format($loan->getBalance()) }}</strong> </td>
                                 </tr>
                                 <tr>
                                     <th>Last Repayment Date:</th>
-                                    <td>{{ '' }}</td>
+                                    <td>{{ $loan->payments->last()->created_at }}</td>
                                 </tr>
                                 <tr>
                                     <th>Comments:</th>
@@ -128,6 +128,34 @@
                                 </tr>
                                 </tbody>
                             </table>
+
+                            <div class="btn-group m-tb-10" role="group" aria-label="Loan Actions">
+                                @if($loan->status_id == 6)
+                                    <button type="button" class="btn btn-primary bg-gradient-primary">Mark as Disbursed</button>
+                                    <button type="button" class="btn btn-warning bg-gradient-warning">Edit Loan</button>
+                                @elseif(in_array($loan->status_id, [5,7,8,10]))
+                                    <button type="button" class="btn btn-info bg-gradient-info">Mark as Cleared</button>;
+                                    <button type="button" class="btn btn-warning bg-gradient-warning">Edit Loan</button>;
+                                    <button type="button" class="btn btn-danger bg-gradient-danger">Record Payment</button>;
+                                    @if($loan->status_id == 5)
+                                        <button onclick="redirect('{{ url("/refinances/create/$loan->id") }}')" type="button" class="btn btn-primary bg-gradient-navy">Refinance</button>
+                                    @endif
+                                    @if($loan->status_id != 5)
+                                        <button type="button" class="btn btn-primary bg-gradient-primary">Mark as Disbursed</button>
+                                    @endif
+                                @elseif($loan->status_id == 1)
+                                    <button type="button" class="btn btn-primary bg-gradient-navy"><i class='fas fa-check-square'></i>&nbsp;Verify Loan</button>
+                                    <button type="button" class="btn btn-danger bg-gradient-danger"><i class='fas fa-times'></i>&nbsp;Reject Loan</button>
+                                @elseif($loan->status_id == 2)
+                                    <button type="button" class="btn btn-primary bg-gradient-navy"><i class='fas fa-check-square'></i>&nbsp;Confirm Loan</button>
+                                    <button type="button" class="btn btn-danger bg-gradient-danger"><i class='fas fa-times'></i>&nbsp;Reject Loan</button>
+                                @elseif($loan->status_id == 3)
+                                    <button type="button" class="btn btn-primary bg-gradient-navy"><i class='fas fa-check-square'></i>&nbsp;Approve Loan</button>
+                                    <button type="button" class="btn btn-danger bg-gradient-danger"><i class='fas fa-times'></i>&nbsp;Reject Loan</button>
+                                @elseif($loan->status_id == 4)
+                                    <button type="button" class="btn btn-success bg-gradient-success"><i class='fas fa-check-square'></i>&nbsp;Disburse Loan</button>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>

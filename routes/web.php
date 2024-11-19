@@ -72,6 +72,8 @@ Route::middleware(['auth', 'checkSession'])->group(function () {
 
 
     Route::get('/refinances', [RefinanceController::class, 'index']);
+    Route::get('/refinances/create/{id}', [RefinanceController::class, 'create']);
+    Route::post('/refinances/create/{id}', [RefinanceController::class, 'store']);
 
     Route::get('/branches/{bankId}', [BranchController::class, 'getBranchByBank']);
 

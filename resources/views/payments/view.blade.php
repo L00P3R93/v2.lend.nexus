@@ -76,7 +76,7 @@
                                     </tr>
                                     <tr>
                                         <th>Loan Balance:</th>
-                                        <td>{{ number_format(0) }}</td>
+                                        <td>{{ number_format($payment->loan->getBalance()) }}</td>
                                     </tr>
                                     <tr>
                                         <th>Status</th>

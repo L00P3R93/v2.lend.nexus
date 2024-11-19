@@ -94,6 +94,15 @@ class Loan extends Model {
         return $this->hasMany(Payment::class);
     }
 
+    public function getBalance(){
+        return $this->loan_total - $this->payments()->sum('amount');
+    }
+
+    public function getPrincipalBalance(){
+        $loan_balance = $this->getBalance();
+        return ($loan_balance >= $this->loan_amount)? $this->loan_amount : $loan_balance;
+    }
+
     public function getStatusBadge(): string {
         return match ($this->status_id) {
             1 => Badge::set('primary', $this->status->name),

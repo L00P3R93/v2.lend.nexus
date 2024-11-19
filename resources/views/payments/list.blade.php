@@ -64,7 +64,7 @@
                                 <td>{{ $payment->date_received }}</td>
                                 <td><a target="_blank" href="{{ url('/loans/'.$payment->loan_id) }}">{{ $payment->loan_id }}</a></td>
                                 <td>{{ number_format($payment->amount) }}</td>
-                                <td>{{ number_format(0) }}</td>
+                                <td>{{ number_format($payment->loan->getBalance()) }}</td>
                                 <td>{!! $payment->getStatusBadge() !!}</td>
                                 <td>
                                     <a class="mr-3" href="{{ url('/payments/'.$payment->id) }}">
