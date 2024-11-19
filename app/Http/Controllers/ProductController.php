@@ -16,7 +16,12 @@ class ProductController extends Controller {
     }
 
     public function store(Request $request) {
-        dd($request->all());
+        $request->validate([
+            'name' => 'required',
+            'rate' => 'required'
+        ]);
+        Product::create($request->all());
+        return redirect('products')->with('success', 'Product created successfully!');
     }
 
     public function show($id) {
@@ -30,6 +35,12 @@ class ProductController extends Controller {
     }
 
     public function update(Request $request, $id) {
-        dd($request->all());
+        $request->validate([
+            'name' => 'required',
+            'rate' => 'required'
+        ]);
+        $product = Product::findOrFail($id);
+        $product->update($request->all());
+        return redirect('products')->with('success', 'Product updated successfully!');
     }
 }
