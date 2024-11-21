@@ -6,7 +6,9 @@ use App\Helpers\Badge;
 use App\Models\Bank;
 use App\Models\Customer;
 use App\Models\Loan;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class LoanController extends Controller {
@@ -88,5 +90,49 @@ class LoanController extends Controller {
             "loan_total" => $request->loan_total,
         ]);
         return redirect('loans')->with('success', 'Loan updated successfully!');
+    }
+
+    public function loanAction($id, $action){
+        $loan = Loan::findOrFail($id);
+
+        // Define action mappings
+        $actions = [
+            'verify' => ['status' => 2, 'message' => 'Verified'],
+            'confirm' => ['status' => 3, 'message' => 'Confirmed'],
+            'approve' => ['status' => 4, 'message' => 'Approved'],
+            'disburse' => ['status' => 5, 'message' => 'Disbursed'],
+            'clear' => ['status' => 6, 'message' => 'Cleared'],
+            'reject' => ['status' => 12, 'message' => 'Rejected'],
+        ];
+
+        // Check if the action exists in the mappings
+        if (isset($actions[$action])) {
+            $details = $actions[$action];
+            $comments = sprintf(
+                "Loan %s by %s on %s",
+                Badge::set('info', $details['message']),
+                Badge::set('default', Auth::user()->name),
+                Badge::set('default', now()->format('Y-m-d H:i:s'))
+            );
+
+            $loan->update([
+                'status_id' => $details['status'],
+                'comments' => $loan->comments . '<br>' . $comments,
+            ]);
+
+            return redirect(url('/loans/' . $loan->id))->with('success', "Loan {$details['message']} Successfully");
+        }
+
+        // Default case for undefined actions
+        return redirect(url('/loans/' . $loan->id))->with('error', 'Loan Action Not Defined!');
+    }
+
+    public function collectionsList() {
+        $loans = Loan::whereIn('status_id', [5,7])
+            ->where(function (Builder $query){
+                $query->where('due_date', '>=', Carbon::now()->startOfMonth())
+                    ->where('due_date', '<=', Carbon::now()->endOfMonth());
+            })->get();
+        return view('loans.collections_list', compact('loans'));
     }
 }

@@ -37,13 +37,13 @@
                             <h2 class="m-t-30">{!! 'KES.  <span class="text-bold text-orange">' . number_format($loan->loan_amount).'</span>' !!}</h2>
                         </div>
                         <div class="col-md-10 col-lg-10 ">
+                            @include('layouts._message')
                             <table class="table table-striped table-bordered table-hover" style="text-transform: uppercase;">
-                                <thead>
-                                <tr>
-                                    <th></th>
-                                </tr>
-                                </thead>
                                 <tbody>
+                                <tr>
+                                    <th>Loan ID</th>
+                                    <td>{{ set_number($loan->id) }}</td>
+                                </tr>
                                 <tr>
                                     <th style="width: 30%;">Customer Name:</th>
                                     <td>{{ $loan->customer->getCustomerName() }}</td>
@@ -131,29 +131,29 @@
 
                             <div class="btn-group m-tb-10" role="group" aria-label="Loan Actions">
                                 @if($loan->status_id == 6)
-                                    <button type="button" class="btn btn-primary bg-gradient-primary">Mark as Disbursed</button>
+                                    <button onclick="redirect('{{ url("/loans/$loan->id/disburse") }}')" type="button" class="btn btn-primary bg-gradient-primary">Mark as Disbursed</button>
                                     <button type="button" class="btn btn-warning bg-gradient-warning">Edit Loan</button>
                                 @elseif(in_array($loan->status_id, [5,7,8,10]))
-                                    <button type="button" class="btn btn-info bg-gradient-info">Mark as Cleared</button>;
+                                    <button onclick="redirect('{{ url("/loans/$loan->id/clear") }}')" type="button" class="btn btn-info bg-gradient-info">Mark as Cleared</button>;
                                     <button type="button" class="btn btn-warning bg-gradient-warning">Edit Loan</button>;
                                     <button type="button" class="btn btn-danger bg-gradient-danger">Record Payment</button>;
                                     @if($loan->status_id == 5)
                                         <button onclick="redirect('{{ url("/refinances/create/$loan->id") }}')" type="button" class="btn btn-primary bg-gradient-navy">Refinance</button>
                                     @endif
                                     @if($loan->status_id != 5)
-                                        <button type="button" class="btn btn-primary bg-gradient-primary">Mark as Disbursed</button>
+                                        <button onclick="redirect('{{ url("/loans/$loan->id/disburse") }}')" type="button" class="btn btn-primary bg-gradient-primary">Mark as Disbursed</button>
                                     @endif
                                 @elseif($loan->status_id == 1)
-                                    <button type="button" class="btn btn-primary bg-gradient-navy"><i class='fas fa-check-square'></i>&nbsp;Verify Loan</button>
-                                    <button type="button" class="btn btn-danger bg-gradient-danger"><i class='fas fa-times'></i>&nbsp;Reject Loan</button>
+                                    <button onclick="redirect('{{ url("/loans/$loan->id/verify") }}')" type="button" class="btn btn-primary bg-gradient-navy"><i class='fas fa-check-square'></i>&nbsp;Verify Loan</button>
+                                    <button onclick="redirect('{{ url("/loans/$loan->id/reject") }}')" type="button" class="btn btn-danger bg-gradient-danger"><i class='fas fa-times'></i>&nbsp;Reject Loan</button>
                                 @elseif($loan->status_id == 2)
-                                    <button type="button" class="btn btn-primary bg-gradient-navy"><i class='fas fa-check-square'></i>&nbsp;Confirm Loan</button>
-                                    <button type="button" class="btn btn-danger bg-gradient-danger"><i class='fas fa-times'></i>&nbsp;Reject Loan</button>
+                                    <button onclick="redirect('{{ url("/loans/$loan->id/confirm") }}')" type="button" class="btn btn-primary bg-gradient-navy"><i class='fas fa-check-square'></i>&nbsp;Confirm Loan</button>
+                                    <button onclick="redirect('{{ url("/loans/$loan->id/reject") }}')" type="button" class="btn btn-danger bg-gradient-danger"><i class='fas fa-times'></i>&nbsp;Reject Loan</button>
                                 @elseif($loan->status_id == 3)
-                                    <button type="button" class="btn btn-primary bg-gradient-navy"><i class='fas fa-check-square'></i>&nbsp;Approve Loan</button>
-                                    <button type="button" class="btn btn-danger bg-gradient-danger"><i class='fas fa-times'></i>&nbsp;Reject Loan</button>
+                                    <button onclick="redirect('{{ url("/loans/$loan->id/approve") }}')" type="button" class="btn btn-primary bg-gradient-navy"><i class='fas fa-check-square'></i>&nbsp;Approve Loan</button>
+                                    <button onclick="redirect('{{ url("/loans/$loan->id/reject") }}')" type="button" class="btn btn-danger bg-gradient-danger"><i class='fas fa-times'></i>&nbsp;Reject Loan</button>
                                 @elseif($loan->status_id == 4)
-                                    <button type="button" class="btn btn-success bg-gradient-success"><i class='fas fa-check-square'></i>&nbsp;Disburse Loan</button>
+                                    <button onclick="redirect('{{ url("/loans/$loan->id/disburse") }}')" type="button" class="btn btn-success bg-gradient-success"><i class='fas fa-check-square'></i>&nbsp;Disburse Loan</button>
                                 @endif
                             </div>
                         </div>

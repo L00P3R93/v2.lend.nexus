@@ -68,6 +68,7 @@ Route::middleware(['auth', 'checkSession'])->group(function () {
     Route::get('/loans/{id}', [LoanController::class, 'show']);
     Route::get('/loans/edit/{id}', [LoanController::class, 'edit']);
     Route::put('/loans/edit/{id}', [LoanController::class, 'update']);
+    Route::get('/loans/{id}/{action}', [LoanController::class, 'loanAction']);
 
     Route::get('/payments', [PaymentController::class, 'index']);
     Route::get('/payments/create', [PaymentController::class, 'create']);
