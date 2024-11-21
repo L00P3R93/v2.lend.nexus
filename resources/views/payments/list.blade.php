@@ -58,22 +58,24 @@
                             </thead>
                             <tbody>
                             @foreach($payments as $payment)
-                                <td>{{ $payment->customer->getCustomerName() }}</td>
-                                <td>{{ $payment->phone }}</td>
-                                <td>{{ $payment->customer->bank->name }}</td>
-                                <td>{{ $payment->date_received }}</td>
-                                <td><a target="_blank" href="{{ url('/loans/'.$payment->loan_id) }}">{{ $payment->loan_id }}</a></td>
-                                <td>{{ number_format($payment->amount) }}</td>
-                                <td>{{ number_format($payment->loan->getBalance()) }}</td>
-                                <td>{!! $payment->getStatusBadge() !!}</td>
-                                <td>
-                                    <a class="mr-3" href="{{ url('/payments/'.$payment->id) }}">
-                                        <img src="{{ url('/assets/images/icons/eye.svg') }}" alt="img">
-                                    </a>
-                                    <a class="mr-3" href="{{ url('/payments/edit/'.$payment->id) }}">
-                                        <img src="{{ url('/assets/images/icons/edit.svg') }}" alt="img">
-                                    </a>
-                                </td>
+                                <tr>
+                                    <td>{{ $payment->customer->getCustomerName() }}</td>
+                                    <td>{{ $payment->phone }}</td>
+                                    <td>{{ $payment->customer->bank->name }}</td>
+                                    <td>{{ $payment->date_received }}</td>
+                                    <td><a target="_blank" href="{{ url('/loans/'.$payment->loan_id) }}">{{ $payment->loan_id }}</a></td>
+                                    <td>{{ number_format($payment->amount) }}</td>
+                                    <td>{{ number_format($payment->loan->getBalance()) }}</td>
+                                    <td>{!! $payment->getStatusBadge() !!}</td>
+                                    <td>
+                                        <a class="mr-3" href="{{ url('/payments/'.$payment->id) }}">
+                                            <img src="{{ url('/assets/images/icons/eye.svg') }}" alt="img">
+                                        </a>
+                                        <a class="mr-3" href="{{ url('/payments/edit/'.$payment->id) }}">
+                                            <img src="{{ url('/assets/images/icons/edit.svg') }}" alt="img">
+                                        </a>
+                                    </td>
+                                </tr>
                             @endforeach
                             </tbody>
                         </table>

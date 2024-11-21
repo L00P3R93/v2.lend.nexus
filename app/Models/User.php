@@ -82,6 +82,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Generate a unique identifier for the user.
+     *
+     * @return string A string containing the year and month of the user's creation date,
+     * followed by the user's id.
+     */
+    public function getUserId(): string {
+        return date('Ym', strtotime($this->created_at)).set_number($this->id);
+    }
+
+    /**
      * Get the status badge HTML for this role.
      *
      * @return string

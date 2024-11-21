@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('loans', function (Blueprint $table) {
+        Schema::table('refinances', function (Blueprint $table) {
+            $table->foreign('loan_id')->references('id')->on('loans')->onDelete('set null');
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('set null');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('set null');
-            $table->foreign('bank_id')->references('id')->on('banks')->onDelete('set null');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
-            $table->foreign('status_id')->references('id')->on('loan_states')->onDelete('set null');
         });
     }
 
@@ -25,6 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('foreign_keys_to_loans_refinances_tables');
+        Schema::table('refinances', function (Blueprint $table) {
+            //
+        });
     }
 };

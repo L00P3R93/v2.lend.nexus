@@ -178,7 +178,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-4" id="bank_section" style="@if($customer->product_id != 1) {{ 'display: none' }} @endif">
                                     <label for="bankId">Bank</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -195,7 +195,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-4" id="branch_section" style="@if($customer->product_id != 1) {{ 'display: none' }} @endif">
                                     <label for="branchId">Branch</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -213,7 +213,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row m-t-10">
+                            <div class="row m-t-10" id="job_type_section" style="@if($customer->product_id != 1) {{ 'display: none' }} @endif">
                                 <div class="form-group col-md-4">
                                     <label for="job_type">Job Type</label>
                                     <div class="input-group">
@@ -373,6 +373,20 @@
         });
 
         $(document).ready(function () {
+            $("#product_id").change(function() {
+                let productId = $(this).val();
+                // Show/Hide bank, branch and job type based on the selected loan product
+                if (productId === '1') {  // Bankers loan product
+                    $('#bank_section').show();
+                    $('#branch_section').show();
+                    $('#job_type_section').show();
+                } else {
+                    $('#bank_section').hide();
+                    $('#branch_section').hide();
+                    $('#job_type_section').hide();
+                }
+            })
+
             $('#bank_id').on('change', function () {
                 let bankId = $(this).val();
                 if (bankId) {

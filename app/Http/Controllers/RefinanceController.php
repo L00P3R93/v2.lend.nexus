@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class RefinanceController extends Controller{
     public function index() {
-        return view('refinances.list');
+        $refinances = Refinance::with(['loan', 'customer', 'user'])->get();
+        return view('refinances.list', compact('refinances'));
     }
 
     public function create($id) {
@@ -31,7 +32,7 @@ class RefinanceController extends Controller{
             'comments' => $loan->comments."<br> Loan cleared due to refinance by ".Badge::set('primary', Auth::user()->name)." on ".Badge::set('secondary', date('Y-m-d H:i:s')),
         ]);
         $loan_amount = $request->principal_balance + $request->refinance_amount;
-        $details = $loan->calculate($loan_amount);
+        $details = Loan::calculate($loan_amount);
         $comments = "Refinance created by ".Badge::set('primary', Auth::user()->name)." on ".Badge::set('secondary', date('Y-m-d H:i:s'));
         $newLoan = Loan::create([
             'customer_id' => $loan->customer_id,

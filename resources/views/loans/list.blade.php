@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="{{ url('/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ url('/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ url('/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <style>
+        .normal:hover {text-decoration: underline;}
+        .private, .private .normal {color: #dfa314 !important;font-weight: 700 !important;}
+        .topUps, .topUps .normal {background-color: #f1f1f1 !important;color: #3F51B5 !important;font-weight: 700 !important;}
+    </style>
 @endsection
 
 @section('content')
@@ -59,20 +64,22 @@
                             </thead>
                             <tbody>
                                 @foreach($loans as $loan)
-                                    <td>
-                                        <a target="_blank" href="{{ url('/loans/'.$loan->id) }}" class="text-bold text-blue">{{ $loan->id }}</a>
-                                    </td>
-                                    <td>
-                                        <a target="_blank" href="{{ url('/customers/'.$loan->customer_id) }}" class="text-bold">{{  $loan->customer->getCustomerName() }}</a>
-                                    </td>
-                                    <td>{{ $loan->customer_phone }}</td>
-                                    <td>{{ $loan->given_date }}</td>
-                                    <td>{{ $loan->due_date }}</td>
-                                    <td>{{ number_format($loan->loan_amount) }}</td>
-                                    <td>{{ $loan->product->name.' | '.$loan->bank->name.' | '.$loan->customer->town->name }}</td>
-                                    <td>{{ number_format(0) }}</td>
-                                    <td>{{ number_format(0) }}</td>
-                                    <td>{!! $loan->getStatusBadge() !!}</td>
+                                    <tr @if(str_contains($loan->comments, 'Refinance created by')) {{ 'class=topUps' }} @elseif($loan->product_id == 3) {{ 'class=private' }} @endif>
+                                        <td>
+                                            <a target="_blank" href="{{ url('/loans/'.$loan->id) }}" class="text-bold normal">{{ set_number($loan->id) }}</a>
+                                        </td>
+                                        <td>
+                                            <a target="_blank" href="{{ url('/customers/'.$loan->customer_id) }}" class="text-bold normal">{{  $loan->customer->getCustomerName() }}</a>
+                                        </td>
+                                        <td>{{ $loan->customer_phone }}</td>
+                                        <td>{{ $loan->given_date }}</td>
+                                        <td>{{ $loan->due_date }}</td>
+                                        <td>{{ number_format($loan->loan_amount) }}</td>
+                                        <td>{{ $loan->product->name.' | '.$loan->bank->name.' | '.$loan->customer->town->name }}</td>
+                                        <td>{{ number_format($loan->payments->sum('amount')) }}</td>
+                                        <td>{{ number_format($loan->getBalance()) }}</td>
+                                        <td>{!! $loan->getStatusBadge() !!}</td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>

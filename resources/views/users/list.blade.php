@@ -45,6 +45,7 @@
                         <table id="usersTable" class="table table-bordered table-striped table-hover">
                             <thead class="bg-gradient-navy">
                                 <tr>
+                                    <th>#</th>
                                     <th>Name</th>
                                     <th>Phone</th>
                                     <th>Email</th>
@@ -56,6 +57,7 @@
                             <tbody>
                             @foreach($users as $user)
                                 <tr>
+                                    <td>{{ $user->getUserId() }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->phoneNo }}</td>
                                     <td>{{ $user->email }}</td>

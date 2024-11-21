@@ -151,13 +151,13 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-4" id="bank_section" style="display: none;">
                                     <label for="bank_id">Bank</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-university"></i></span>
                                         </div>
-                                        <select class="form-control" id="bank_id" name="bank_id" onchange="handleChangeBank()">
+                                        <select class="form-control" id="bank_id" name="bank_id">
                                             <option> -- Select Bank --</option>
                                             @foreach($banks as $bank)
                                                 <option  value="{{ $bank->id }}">{{ $bank->name }}</option>
@@ -165,7 +165,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-4" id="branch_section" style="display: none;">
                                     <label for="branch_id">Branch</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -177,7 +177,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row m-t-10">
+                            <div class="row m-t-10" id="job_type_section" style="display: none;">
                                 <div class="form-group col-md-4">
                                     <label for="job_type">Job Type</label>
                                     <div class="input-group">
@@ -313,6 +313,20 @@
         });
 
         $(document).ready(function () {
+            $("#product_id").change(function() {
+                let productId = $(this).val();
+                // Show/Hide bank, branch and job type based on the selected loan product
+                if (productId === '1') {  // Bankers loan product
+                    $('#bank_section').show();
+                    $('#branch_section').show();
+                    $('#job_type_section').show();
+                } else {
+                    $('#bank_section').hide();
+                    $('#branch_section').hide();
+                    $('#job_type_section').hide();
+                }
+            })
+
             $('#bank_id').on('change', function () {
                 let bankId = $(this).val();
                 if (bankId) {

@@ -38,7 +38,7 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="card text-white bg-info bg-gradient-info" style="max-width: 50rem;">
-                            <div class="card-body align-content-center">
+                            <div class="card-body">
                                 <h5 class="card-title"><strong>Loan Limit:</strong> {{ number_format($loan->customer->loan_limit) }}</h5>
                                 <h5 class="card-title m-l-10"><strong>Principal Balance:</strong> {{ number_format($loan->getPrincipalBalance()) }}</h5><br>
                                 <h5 class="card-title text-red"><strong>Available Re-finance: {{ number_format($loan->getRefinanceableAmount()) }}</strong></h5>

@@ -46,7 +46,7 @@
                                     <tbody>
                                     <tr>
                                         <th>Payment No:</th>
-                                        <td>{{ $payment->id }}</td>
+                                        <td>{{ set_number($payment->id) }}</td>
                                     </tr>
                                     <tr>
                                         <th>Payment Method:</th>

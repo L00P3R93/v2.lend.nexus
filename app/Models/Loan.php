@@ -94,6 +94,23 @@ class Loan extends Model {
         return $this->hasMany(Payment::class);
     }
 
+    /**
+     * Calculates the loan interest and total amount given a loan amount.
+     *
+     * @param int $loan_amount
+     * @return array
+     */
+    public static function calculate(int $loan_amount): array {
+        $loan_interest = round($loan_amount * 0.25);
+        $loan_total = $loan_amount + $loan_interest;
+        $processing_fee = 0;
+        return [
+            'loan_interest' => $loan_interest,
+            'loan_total' => $loan_total,
+            'processing_fee' => $processing_fee,
+        ];
+    }
+
     public function getBalance(){
         return $this->loan_total - $this->payments()->sum('amount');
     }
@@ -103,15 +120,21 @@ class Loan extends Model {
         return ($loan_balance >= $this->loan_amount)? $this->loan_amount : $loan_balance;
     }
 
+    public function getRefinanceableAmount(){
+        return ($this->customer->loan_limit - $this->getPrincipalBalance());
+    }
+
     public function getStatusBadge(): string {
         return match ($this->status_id) {
-            1 => Badge::set('primary', $this->status->name),
-            2 => Badge::set('danger', $this->status->name),
-            3 => Badge::set('secondary', $this->status->name),
-            4 => Badge::set('default', $this->status->name),
-            5 => Badge::set('warning', $this->status->name),
-            6 => Badge::set('info', $this->status->name),
-            default => Badge::set('secondary', 'NONE'),
+            1 => Badge::set('primary bg-gradient-primary', $this->status->name), //Pending Verification
+            2 => Badge::set('success bg-gradient-olive', $this->status->name), //Pending Confirmation
+            3, 9 => Badge::set('secondary bg-gradient-secondary', $this->status->name), //Pending Approval, Failed
+            4 => Badge::set('primary bg-gradient-navy', $this->status->name), //Pending Disbursement
+            5 => Badge::set('success bg-gradient-success', $this->status->name), //Disbursed
+            6, 10, 11, 12 => Badge::set('default', $this->status->name), //Cleared, Written-Off, Deleted, Cancelled
+            7 => Badge::set('warning bg-gradient-warning', $this->status->name), //Overdue
+            8 => Badge::set('danger', $this->status->name), //Past Overdue
+            default => Badge::set('secondary bg-gradient-secondary', 'NONE'),
         };
     }
 }

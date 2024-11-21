@@ -116,7 +116,7 @@
                                 </tr>
                                 <tr>
                                     <th>Last Repayment Date:</th>
-                                    <td>{{ $loan->payments->last()->created_at }}</td>
+                                    <td>{!! $loan->payments->last()?->created_at ?? '<span class="badge badge-secondary bg-gradient-secondary">No Payments Made</span' !!} </td>
                                 </tr>
                                 <tr>
                                     <th>Comments:</th>
