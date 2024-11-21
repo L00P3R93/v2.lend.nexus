@@ -9,6 +9,7 @@ use App\Http\Controllers\LoanController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RefinanceController;
+use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,13 @@ Route::middleware(['auth', 'checkSession'])->group(function () {
         Route::get('/roles/{id}', [RoleController::class, 'show']);
         Route::get('/roles/edit/{id}', [RoleController::class, 'edit']);
         Route::put('/roles/edit/{id}', [RoleController::class, 'update']);
+
+        Route::get('/products', [ProductController::class, 'index']);
+        Route::get('/products/create', [ProductController::class, 'create']);
+        Route::post('/products/create', [ProductController::class, 'store']);
+        Route::get('/products/{id}', [ProductController::class, 'show']);
+        Route::get('/products/edit/{id}', [ProductController::class, 'edit']);
+        Route::put('/products/edit/{id}', [ProductController::class, 'update']);
     });
 
 
@@ -70,19 +78,22 @@ Route::middleware(['auth', 'checkSession'])->group(function () {
     Route::get('/payments/edit/{id}', [PaymentController::class, 'edit']);
     Route::put('/payments/edit/{id}', [PaymentController::class, 'update']);
 
-
     Route::get('/refinances', [RefinanceController::class, 'index']);
     Route::get('/refinances/create/{id}', [RefinanceController::class, 'create']);
     Route::post('/refinances/create/{id}', [RefinanceController::class, 'store']);
 
+    //AJAX
     Route::get('/branches/{bankId}', [BranchController::class, 'getBranchByBank']);
 
-    Route::get('/products', [ProductController::class, 'index']);
-    Route::get('/products/create', [ProductController::class, 'create']);
-    Route::post('/products/create', [ProductController::class, 'store']);
-    Route::get('/products/{id}', [ProductController::class, 'show']);
-    Route::get('/products/edit/{id}', [ProductController::class, 'edit']);
-    Route::put('/products/edit/{id}', [ProductController::class, 'update']);
+    //CollectionsList
+    Route::get('/collections_list', [LoanController::class, 'collectionsList']);
+
+    //Reports
+    Route::get('/reports', [ReportsController::class, 'index']);
+    Route::get('/loan_book', [ReportsController::class, 'loanBook']);
+    Route::get('/collections_report', [ReportsController::class, 'collectionsReport']);
+    Route::get('/daily_sales', [ReportsController::class, 'dailySales']);
+    Route::get('/monthly_sales', [ReportsController::class, 'monthlySales']);
 
 });
 
