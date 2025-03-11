@@ -6,10 +6,11 @@ use App\Helpers\Badge;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Scout\Searchable;
 
 class Customer extends Model {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, Searchable;
 
     protected $fillable = [
         'first_name',
@@ -35,6 +36,8 @@ class Customer extends Model {
         'comments',
         'user_id'
     ];
+
+    protected $with = ['product', 'bank', 'branch', 'loans', 'status'];
 
     /**
      * Get the user associated with the customer.
@@ -130,5 +133,14 @@ class Customer extends Model {
             1 => Badge::set('primary', 'YES'),
             default => Badge::set('secondary', 'NONE'),
         };
+    }
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array<string, mixed>
+     */
+    public function toSearchableArray(): array {
+        return $this->toArray();
     }
 }

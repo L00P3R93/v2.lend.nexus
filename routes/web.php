@@ -12,6 +12,7 @@ use App\Http\Controllers\RefinanceController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Models\Customer;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
@@ -96,6 +97,8 @@ Route::middleware(['auth', 'checkSession'])->group(function () {
     Route::get('/daily_sales', [ReportsController::class, 'dailySales']);
     Route::get('/monthly_sales', [ReportsController::class, 'monthlySales']);
 
+    //Search
+    Route::get('/search/customers', \App\Http\Controllers\SearchController::class);
 });
 
 
