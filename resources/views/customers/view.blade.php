@@ -5,6 +5,10 @@
 @endsection
 
 @section('style')
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ url('/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ url('/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ url('/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <!-- Lightbox2 -->
     <link rel="stylesheet" href="{{ url('/assets/plugins/lightbox2/css/lightbox.min.css') }}">
     <style>
@@ -42,10 +46,6 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Customers</h3>
-                    </div>
-                    <!-- /.card-header -->
                     <div class="card card-primary card-outline card-outline-tabs">
                         <div class="card-header p-0 border-bottom-0">
                             <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
@@ -185,7 +185,7 @@
                                         </div>
                                     </div>
                                     <div class="m-tb-10">
-                                        <table id="loanDetailsTable" class="table table-striped table-hover table-bordered">
+                                        <table id="customer_loans" class="table table-striped table-hover table-bordered">
                                             <thead class="bg-gradient-navy">
                                             <tr>
                                                 <th>#</th>
@@ -220,7 +220,7 @@
                                         </div>
                                     </div>
                                     <div class="m-tb-10">
-                                        <table class="table table-hover table-striped table-bordered">
+                                        <table id="customer_payments" class="table table-hover table-striped table-bordered">
                                             <thead class="bg-gradient-navy">
                                             <tr>
                                                 <th>#</th>
@@ -260,6 +260,22 @@
 @endsection
 
 @section('script')
+    <!-- DataTables  & Plugins -->
+    <script src="{{ url('/assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ url('/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ url('/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ url('/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ url('/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ url('/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ url('/assets/plugins/jszip/jszip.min.js') }}"></script>
+    <script src="{{ url('/assets/plugins/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ url('/assets/plugins/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ url('/assets/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ url('/assets/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ url('/assets/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
     <!-- Lightbox2 -->
     <script src="{{ url('/assets/plugins/lightbox2/js/lightbox.min.js') }}"></script>
+    <script>
+        $('#customer_loans, #customer_payments').DataTable();
+    </script>
 @endsection

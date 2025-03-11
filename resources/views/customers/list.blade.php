@@ -35,11 +35,7 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Customers</h3>
-                    </div>
-                    <!-- /.card-header -->
+                <div class="card card-primary card-outline">
                     <div class="card-body">
                         @include('layouts._message')
                         <table id="customersTable" class="table table-bordered table-striped table-hover">

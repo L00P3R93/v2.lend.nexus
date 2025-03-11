@@ -219,48 +219,72 @@
 
 <script>
     $(function () {
-        $('.search').bind("keyup click",function(e) {
+        let debounceTimer;
+
+        $('.search').on("keyup click", function (e) {
             e.preventDefault();
             e.stopPropagation();
-            var value = $(this).val();
-            //console.log(`Search: ${value}`)
-            if (value.length>3) {
-                searchData(value);
-            }
-            else {
+
+            let value = $(this).val().trim();
+
+            // Clear previous debounce timer
+            clearTimeout(debounceTimer);
+
+            if (value.length > 3) {
+                // Set a new debounce timer (300ms delay)
+                debounceTimer = setTimeout(() => {
+                    searchData(value);
+                }, 300);
+            } else {
                 $('#search-result-container').hide();
             }
         });
-        $(document).click(function(){
-            $('.results').hide();
+
+        $(document).click(function () {
+            $('#search-result-container').hide();
         });
 
-        const searchData = (val) =>{
-            $('#search-result-container').show();
-            $('#search-result-container').html(`<div class='text-center'><img class="loading" src="{{ url('/assets/images/loading.gif') }}" alt="LOADING_IMG" /> <span style="font-size: 20px;">Loading...</span></div>`);
-            $.get('{{ url('/search/customers') }}', {'query': val}, function(response){
-                let results = $('#search-result-container')
-                results.empty();
+        const searchData = (query) => {
+            let resultsContainer = $('#search-result-container');
 
-                if(response.length > 0){
-                    response.forEach(customer => {
-                        console.log(customer)
-                        results.append(
-                            `<li class='search-result'>
+            // Show loading state
+            resultsContainer.show().html(`
+                <div class='text-center'>
+                    <img class="loading" src="{{ url('/assets/images/loading.gif') }}" alt="LOADING_IMG" />
+                    <span style="font-size: 20px;">Loading...</span>
+                </div>
+            `);
+
+            $.ajax({
+                url: '{{ url('/search/customers') }}',
+                type: 'GET',
+                data: { query: query },
+                dataType: 'json',
+                success: function (response) {
+                    resultsContainer.empty();
+
+                    if (response.length > 0) {
+                        response.forEach(customer => {
+                            resultsContainer.append(`
+                            <li class='search-result'>
                                 <a class='nxt' target='_blank' href='{{ url('/customers') }}/${customer.id}'>
-                                    ${customer.bio} ${customer.productName} ${customer.bank}
-                                    ${customer.loan > 0 ? '<strong>Loan ID: </strong>' + customer.loan + ', <strong>Status: </strong>' + customer.status : ''}
+                                    ${customer.bio || ''}
+                                    ${customer.productName || ''}
+                                    ${customer.bank || ''}
+                                    ${customer.loan ? `<strong>Loan ID: </strong>${customer.loan}, <strong>Status: </strong>${customer.status}` : ''}
                                 </a>
-                            </li>`
-                        );
-                    })
-                }else{
-                    results.append(`<div class='search-result text-center'>No Result Found...</div>`)
+                            </li>
+                        `);
+                        });
+                    } else {
+                        resultsContainer.append(`<div class='search-result text-center'>No Result Found...</div>`);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    resultsContainer.html(`<div class='text-center text-danger'>Error: ${error}</div>`);
                 }
-            }).fail(function(xhr, ajaxOptions, thrownError) {
-                alert(thrownError);
             });
-        }
+        };
     });
 </script>
 @yield('script')

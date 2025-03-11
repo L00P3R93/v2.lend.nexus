@@ -35,12 +35,8 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Loans List</h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
+                <div class="card card-primary card-outline">
+                    <div class="card-body ">
                         @include('layouts._message')
                         <table id="collectionsTable" class="table table-bordered table-striped table-hover">
                             <thead class="bg-gradient-navy">

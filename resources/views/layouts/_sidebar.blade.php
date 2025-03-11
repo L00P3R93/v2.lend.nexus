@@ -25,12 +25,12 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="{{ url('/dashboard') }}" class="nav-link active">
+                    <a href="{{ url('/dashboard') }}" class="nav-link {{ selected(request()->path(), 'dashboard', 'active') }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ selector(request()->path(), ['leads','customers','zero_balance','banks'], 'menu-open') }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>Customers</p>
@@ -38,32 +38,32 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('/leads') }}" class="nav-link">
+                            <a href="{{ url('/leads') }}" class="nav-link {{ selected(request()->path(), 'leads', 'active') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Leads</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/customers') }}" class="nav-link">
+                            <a href="{{ url('/customers') }}" class="nav-link {{ selected(request()->path(), 'customers', 'active') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Customers</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ url('/zero_balance') }}" class="nav-link {{ selected(request()->path(), 'zero_balance', 'active') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Zero Balance</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ url('/banks') }}" class="nav-link {{ selected(request()->path(), 'banks', 'active') }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Imara Banks</p>
+                                <p>Banks</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item ">
+                <li class="nav-item {{ selector(request()->path(), ['refinances','loans'], 'menu-open') }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon far fa-list-alt"></i>
                         <p>
@@ -73,20 +73,20 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('/refinances') }}" class="nav-link">
+                            <a href="{{ url('/refinances') }}" class="nav-link {{ selected(request()->path(), 'refinances', 'active') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Refinances</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/loans') }}" class="nav-link">
+                            <a href="{{ url('/loans') }}" class="nav-link {{ selected(request()->path(), 'loans', 'active') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Loans</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item ">
+                <li class="nav-item {{ selector(request()->path(), ['collections_list','overdue', 'defaulters', 'due_roll'], 'menu-open') }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-clipboard-list"></i>
                         <p>Collections</p>
@@ -94,44 +94,80 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('/collections_list') }}" class="nav-link">
+                            <a href="{{ url('/collections_list') }}" class="nav-link {{ selected(request()->path(), 'collections_list', 'active') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Collection List</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ url('/overdue') }}" class="nav-link {{ selected(request()->path(),'overdue', 'active') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>OverDues</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link ">
+                            <a href="{{ url('/defaulters') }}" class="nav-link {{ selected(request()->path(),'defaulters', 'active') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Past Over-Dues</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ url('/due_roll') }}" class="nav-link {{ selected(request()->path(),'due_roll', 'active') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Due Roll</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ url('/payments') }}" class="nav-link">
+                <li class="nav-item {{ selector(request()->path(), ['suspense','payments'], 'menu-open') }}">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-receipt"></i>
                         <p>Payments</p>
+                        <i class="fas fa-angle-left right"></i>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ url('/') }}" class="nav-link  {{ selected(request()->path(),'suspense', 'active') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Suspense</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/payments') }}" class="nav-link  {{ selected(request()->path(),'payments', 'active') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Payments</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ url('/reports') }}" class="nav-link">
+                <li class="nav-item  {{ selector(request()->path(), ['disbursedReport','loanBookReport','collectionsReport'], 'menu-open') }}">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-file-alt"></i>
                         <p>Reports</p>
+                        <i class="fas fa-angle-left right"></i>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ url('/disbursedReport') }}" class="nav-link {{ selected(request()->path(), 'disbursedReport', 'active') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Disbursed Report</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/loanBookReport') }}" class="nav-link {{ selected(request()->path(), 'loanBookReport', 'active') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Loan Book Report</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/collectionsReport') }}" class="nav-link {{ selected(request()->path(), 'collectionsReport', 'active') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Collections Report</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ selector(request()->path(), ['products','roles','users'], 'menu-open') }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-cogs"></i>
                         <p>Settings</p>
@@ -139,25 +175,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Employers</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/users') }}" class="nav-link ">
+                            <a href="{{ url('/users') }}" class="nav-link {{ selected(request()->path(), 'users', 'active') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Access</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/roles') }}" class="nav-link">
+                            <a href="{{ url('/roles') }}" class="nav-link {{ selected(request()->path(), 'roles', 'active') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Roles</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/products') }}" class="nav-link">
+                            <a href="{{ url('/products') }}" class="nav-link {{ selected(request()->path(), 'products', 'active') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Products</p>
                             </a>
