@@ -30,7 +30,66 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-item {{ selector(request()->path(), ['leads','customers','zero_balance','banks'], 'menu-open') }}">
+                <!-- Requests -->
+                <li class="nav-item {{ selector(request()->path(), ['civil_requests','imara_requests','agent_requests'], 'menu-open') }}">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon far fa-registered"></i>
+                        <p>
+                            Requests
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ url('/civil_requests') }}" class="nav-link {{ selected(request()->path(), 'civil_requests', 'active') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Civil Loan Requests</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/imara_requests') }}" class="nav-link {{ selected(request()->path(), 'imara_requests', 'active') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Imara Loan Requests</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/agent_requests') }}" class="nav-link {{ selected(request()->path(), 'agent_requests', 'active') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Agent Loan Requests</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Leads -->
+                <li class="nav-item {{ selector(request()->path(), ['bank_leads','civil_leads'], 'menu-open') }}">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-people-arrows"></i>
+                        <p>Leads</p>
+                        <i class="fas fa-angle-left right"></i>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ url('/bank_leads') }}" class="nav-link {{ selected(request()->path(), 'bank_leads', 'active') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Bankers</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/civil_leads') }}" class="nav-link {{ selected(request()->path(), 'civil_leads', 'active') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Civil Servants</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/cheques_update') }}" class="nav-link {{ selected(request()->path(), 'cheques_update', 'active') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Customer Cheques</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Customers -->
+                <li class="nav-item {{ selector(request()->path(), ['bank_customers','civil_customers','cheques_update'], 'menu-open') }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>Customers</p>
@@ -38,21 +97,87 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('/leads') }}" class="nav-link {{ selected(request()->path(), 'leads', 'active') }}">
+                            <a href="{{ url('/bank_customers') }}" class="nav-link {{ selected(request()->path(), 'bank_customers', 'active') }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Leads</p>
+                                <p>Bankers</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/customers') }}" class="nav-link {{ selected(request()->path(), 'customers', 'active') }}">
+                            <a href="{{ url('/civil_customers') }}" class="nav-link {{ selected(request()->path(), 'civil_customers', 'active') }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Customers</p>
+                                <p>Civil Servants</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/cheques_update') }}" class="nav-link {{ selected(request()->path(), 'cheques_update', 'active') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Customer Cheques</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Lists -->
+                <li class="nav-item {{ selector(request()->path(), ['my_requests','agent_lists','zero_balance','zero_balance_civil','leads_marketing','refinance_marketing','blocked','blacklist','dnd','banks'], 'menu-open') }}">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon far fa-list-alt"></i>
+                        <p>
+                            Lists
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ url('/my_requests') }}" class="nav-link {{ selected(request()->path(), 'my_requests', 'active') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>My Loan Requests</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/agent_lists') }}" class="nav-link {{ selected(request()->path(), 'agent_lists', 'active') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Assigned Lists</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('/zero_balance') }}" class="nav-link {{ selected(request()->path(), 'zero_balance', 'active') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Zero Balance</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/leads_marketing') }}" class="nav-link {{ selected(request()->path(), 'leads_marketing', 'active') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Leads List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/zero_balance_civil') }}" class="nav-link {{ selected(request()->path(), 'zero_balance_civil', 'active') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Zero Balance Civil</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/refinance_marketing') }}" class="nav-link {{ selected(request()->path(), 'refinance_marketing', 'active') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Re-Finance List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/blocked') }}" class="nav-link {{ selected(request()->path(), 'blocked', 'active') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Blocked List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/blacklist') }}" class="nav-link {{ selected(request()->path(), 'blacklist', 'active') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Black-list</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/dnd') }}" class="nav-link {{ selected(request()->path(), 'dnd', 'active') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Do-Not-Disturb List</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -63,9 +188,10 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item {{ selector(request()->path(), ['refinances','loans'], 'menu-open') }}">
+                <!-- Loans -->
+                <li class="nav-item {{ selector(request()->path(), ['pending_loans','refinances','loans'], 'menu-open') }}">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-list-alt"></i>
+                        <i class="nav-icon fas fa-tasks"></i>
                         <p>
                             Loans
                             <i class="fas fa-angle-left right"></i>
@@ -73,9 +199,9 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('/refinances') }}" class="nav-link {{ selected(request()->path(), 'refinances', 'active') }}">
+                            <a href="{{ url('/pending_loans') }}" class="nav-link {{ selected(request()->path(), 'pending_loans', 'active') }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Refinances</p>
+                                <p>Pending Loans</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -84,8 +210,59 @@
                                 <p>Loans</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/refinances') }}" class="nav-link {{ selected(request()->path(), 'refinances', 'active') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Refinances</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
+                <!-- Calculators -->
+                <li class="nav-item {{ selector(request()->path(), ['imara_calc','civil_calc'], 'menu-open') }}">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-calculator"></i>
+                        <p>Loan Calculators</p>
+                        <i class="fas fa-angle-left right"></i>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ url('/imara_calc') }}" class="nav-link  {{ selected(request()->path(),'imara_calc', 'active') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Imara Loan Calculator</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/civil_calc') }}" class="nav-link  {{ selected(request()->path(),'civil_calc', 'active') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Civil Loan Calculator</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Payments -->
+                <li class="nav-item {{ selector(request()->path(), ['suspense','payments'], 'menu-open') }}">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-receipt"></i>
+                        <p>Payments</p>
+                        <i class="fas fa-angle-left right"></i>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ url('/') }}" class="nav-link  {{ selected(request()->path(),'suspense', 'active') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Suspense</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/payments') }}" class="nav-link  {{ selected(request()->path(),'payments', 'active') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Payments</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Collections -->
                 <li class="nav-item {{ selector(request()->path(), ['collections_list','overdue', 'defaulters', 'due_roll'], 'menu-open') }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-clipboard-list"></i>
@@ -119,27 +296,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item {{ selector(request()->path(), ['suspense','payments'], 'menu-open') }}">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-receipt"></i>
-                        <p>Payments</p>
-                        <i class="fas fa-angle-left right"></i>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ url('/') }}" class="nav-link  {{ selected(request()->path(),'suspense', 'active') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Suspense</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/payments') }}" class="nav-link  {{ selected(request()->path(),'payments', 'active') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Payments</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+
                 <li class="nav-item  {{ selector(request()->path(), ['disbursedReport','loanBookReport','collectionsReport'], 'menu-open') }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-file-alt"></i>

@@ -17,6 +17,16 @@ class CustomerController extends Controller{
         return view('customers.list', compact('customers'));
     }
 
+    public function showBank(){
+        $customers = Customer::where('status', '!=', 6)->where('product_id', 1)->with('product')->get();
+        return view('customers.bankers.list', compact('customers'));
+    }
+
+    public function showCivil(){
+        $customers = Customer::where('status', '!=', 6)->where('product_id', 2)->with('product')->get();
+        return view('customers.civil.list', compact('customers'));
+    }
+
     public function create(){
         $products = Product::all();
         $banks = Bank::all();

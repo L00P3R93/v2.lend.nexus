@@ -141,6 +141,14 @@ class Customer extends Model {
      * @return array<string, mixed>
      */
     public function toSearchableArray(): array {
-        return $this->toArray();
+        return [
+            'id' => $this->id,
+            'first_name' => $this->first_name,
+            'last_name' => $this->last_name,
+            'other_name' => $this->other_name,
+            'primaryPhone' => $this->primaryPhone,
+            'secondaryPhone' => $this->secondaryPhone,
+            'idNo' => $this->idNo,
+        ];
     }
 }

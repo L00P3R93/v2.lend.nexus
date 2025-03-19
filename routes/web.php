@@ -50,6 +50,8 @@ Route::middleware(['auth', 'checkSession'])->group(function () {
     Route::put('/users/edit/{id}', [UserController::class, 'update']);
 
     Route::get('/customers', [CustomerController::class, 'index']);
+    Route::get('/bank_customers', [CustomerController::class, 'showBank']);
+    Route::get('/civil_customers', [CustomerController::class, 'showCivil']);
     Route::get('/customers/create', [CustomerController::class, 'create']);
     Route::post('/customers/create', [CustomerController::class, 'store']);
     Route::get('/customers/{id}', [CustomerController::class, 'show']);
@@ -57,6 +59,8 @@ Route::middleware(['auth', 'checkSession'])->group(function () {
     Route::put('/customers/edit/{id}', [CustomerController::class, 'update']);
 
     Route::get('/leads', [LeadController::class, 'index']);
+    Route::get('/bank_leads', [LeadController::class, 'showBank']);
+    Route::get('/civil_leads', [LeadController::class, 'showCivil']);
     Route::get('/leads/create', [LeadController::class, 'create']);
     Route::post('/leads/create', [LeadController::class, 'store']);
     Route::get('/leads/{id}', [LeadController::class, 'show']);
@@ -64,6 +68,7 @@ Route::middleware(['auth', 'checkSession'])->group(function () {
     Route::put('/leads/edit/{id}', [LeadController::class, 'update']);
 
     Route::get('/loans', [LoanController::class, 'index']);
+
     Route::get('/loans/create/{id}', [LoanController::class, 'create']);
     Route::post('/loans/create/{id}', [LoanController::class, 'store']);
     Route::get('/loans/{id}', [LoanController::class, 'show']);

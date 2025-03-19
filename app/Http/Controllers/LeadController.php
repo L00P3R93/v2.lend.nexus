@@ -15,6 +15,16 @@ class LeadController extends Controller{
         $leads = Customer::where('status', 6)->get();
         return view('leads.list', compact('leads'));
     }
+
+    public function showBank(){
+        $leads = Customer::where('status', 6)->where('product_id', 1)->get();
+        return view('leads.bankers.list', compact('leads'));
+    }
+
+    public function showCivil(){
+        $leads = Customer::where('status', 6)->where('product_id', 2)->get();
+        return view('leads.civil.list', compact('leads'));
+    }
     public function create(){
         $products = Product::all();
         $banks = Bank::all();

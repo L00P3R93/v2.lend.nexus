@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'driver' => env('SCOUT_DRIVER', 'algolia'),
+    'driver' => env('SCOUT_DRIVER', 'tntsearch'),
 
     /*
     |--------------------------------------------------------------------------
@@ -210,11 +210,11 @@ return [
         'storage'  => storage_path('searchindex'), // Ensure this directory exists
         'fuzziness' => true,
         'fuzzy' => [
-            'prefix_length' => 2,
-            'max_expansions' => 50,
-            'distance' => 2
+            'prefix_length' => 2,   // Number of exact characters before applying fuzziness
+            'max_expansions' => 50, // Number of variations to consider
+            'distance' => 3,        // Edit distance for typo tolerance
         ],
-        'asYouType' => false,
-        'searchBoolean' => false,
+        'asYouType' => true,    // Enables partial matching as you type
+        'searchBoolean' => true // Allows more flexible searching
     ],
 ];
